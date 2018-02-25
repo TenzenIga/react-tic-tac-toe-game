@@ -28,7 +28,5 @@ return (
     <NewGame {...props} joinRoom = {this.props.joinRoom} mark ="O" socket= {socket}/>
   )}/>
 </Switch>
-)
-}
-}
+)}}
 export default Rooms;

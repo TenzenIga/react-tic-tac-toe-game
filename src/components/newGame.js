@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Board from './board';
 import Chat from './chat';
+import { Grid, Row, Col } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
   Route,
@@ -37,8 +38,10 @@ render(){
         <p>{this.props.text}</p>
         <p>Room № {room}</p>
         <p>Players- {socket.id}</p>
-          <Board socket = {socket} roomName={room} mark = {mark}/>
-          <Chat socket={socket} roomName={room} mark={mark}/>
+          <Row>
+          <Col lg={6}><Board socket = {socket} roomName={room} mark = {mark}/></Col>
+          <Col lg={6}><Chat socket={socket} roomName={room} mark={mark}/></Col>
+        </Row>
       </div>
     );
     }

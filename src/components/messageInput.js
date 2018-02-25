@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {FormGroup, FormControl} from 'react-bootstrap'
 
 export default class MessageInput extends React.Component {
   constructor(props) {
@@ -13,26 +13,24 @@ handleSubmit = (e)=>{
 
 }
 
+
 sendMessage=()=>{
   this.props.sendMessage(this.state.message);
 }
 render() {
   const {message} =this.state;
       return(
-        <form onSubmit={this.handleSubmit} >
-        <input
+        <form className="input" onSubmit={this.handleSubmit} >
+          <FormGroup
+          >
+            <FormControl
           type="text"
           value={message}
           onChange = {
             ({target})=> this.setState({message:target.value})
           }
               />
-        <input
-          type="submit"
-          disabled = { message.length < 1}
-          className = "send"
-          value='submit'
-        />
+      </FormGroup>
         </form>
     )
   }

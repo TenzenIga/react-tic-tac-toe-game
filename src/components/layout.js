@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Rooms from './Rooms';
 import NewGame from './newGame';
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import {Grid, Button, ButtonToolbar } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 import {
   BrowserRouter as Router,
@@ -62,8 +62,7 @@ componentDidMount(){
 
   handleClick = ()=>{
     this.setState({class:"off"});
-
-  }
+}
 
 
   createGame = () =>{  // create random roomId
@@ -72,8 +71,7 @@ componentDidMount(){
     const {socket} = this.state;
     socket.emit('room', room);
     this.setState({text:"Waiting for opponent", roomName: room})
-
-  }
+}
 
 
   render() {
@@ -82,20 +80,21 @@ componentDidMount(){
   const {roomName} = this.state;
   let {rooms} = this.state;
     return (
-      <div class='menu'>
+      <Grid
+        fluid='true'>
         <Switch>
-          <ButtonToolbar>
-<LinkContainer onClick={this.handleClick}  to="/game"><Button bsStyle="primary" className={this.state.class} >New Game</Button></LinkContainer>
+          <ButtonToolbar className='menu'>
+<LinkContainer onClick={this.handleClick}  to="/game"><Button bsStyle="success" className={this.state.class} block>New Game</Button></LinkContainer>
             <Route exact path='/game' render ={(props) =>(
               <NewGame {...props} status={true} createGame = {this.createGame}  text = {this.state.text} socket ={socket} roomName = {roomName} mark = "X" />
           )} />
-          <LinkContainer onClick={this.handleClick}  to="/rooms"><Button bsStyle="primary" className={this.state.class}>Join game</Button></LinkContainer>
+          <LinkContainer onClick={this.handleClick}  to="/rooms"><Button bsStyle="success" className={this.state.class} block>Join game</Button></LinkContainer>
         <Route path="/rooms" render ={(props) =>(
           <Rooms {...props} rooms ={rooms} joinRoom={this.joinRoom}  socket= {socket}/>
         )}/>
       </ButtonToolbar>
     </Switch>
-</div>
+</Grid>
     );
   }
 }

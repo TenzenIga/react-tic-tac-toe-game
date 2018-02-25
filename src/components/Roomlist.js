@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+
 import {
   Link,
 } from 'react-router-dom';
+import {ListGroup, ListGroupItem} from 'react-bootstrap';
 const RoomsList = (props) =>{
   const rooms = props.rooms;
   const socket = props.socket;
   const listItems = rooms.map((room) =>
-  <li key={room}><Link to={props.match.path + "/" + room}>{room}</Link></li>
+  <ListGroupItem key={room}><Link to={props.match.path + "/" + room}>{room}</Link></ListGroupItem>
 )
  return (
-   <div>
+   <div className='roomList'>
      <a  href='/'>Main</a>
    {rooms.length > 0 ?(
 
-       <ul>
+       <ListGroup>
          {listItems}
-       </ul>
+       </ListGroup>
 
    ): (
      <div>

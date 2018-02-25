@@ -26,7 +26,7 @@ export default class Chat extends React.Component {
 
       return(
         <div className="chat-wrapper">
-        <h1>Chat</h1>
+        <h3 className='text-center'>Chat</h3>
           <Messages messages={messages} />
           <MessageInput sendMessage ={this.sendMessage} />
       </div>
